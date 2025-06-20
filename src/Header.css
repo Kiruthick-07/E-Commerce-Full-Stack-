@@ -39,7 +39,7 @@
 }
 .loginbutton{
     background-color: black;
-    padding: 10px;
+    padding:10px 20px;
     color: white;
     border: none;
     border-radius: 10px;
@@ -61,6 +61,8 @@
     display: none;
     left: 0;
     padding: 20px;
+    z-index: 1000;
+    top: 0;
 }
 .sidenavlinks{
     display: flex;
@@ -87,4 +89,5 @@
         display: block;
         top: 10%;
     }
+
  }
