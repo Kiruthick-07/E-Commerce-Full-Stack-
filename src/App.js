@@ -1,6 +1,7 @@
 import Hero from './Hero';
 import Header from './Header';
 import Category from './Category';
+import Products from './Products';
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <Header />
       <Hero />
       <Category />
+      <Products />
     </div>
   );
 }

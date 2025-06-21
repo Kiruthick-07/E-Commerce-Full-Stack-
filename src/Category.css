@@ -7,6 +7,7 @@
     border-radius: 15px;
     display: block;
     opacity: 90%;
+    transition: 0.3s ease-in-out;
 }
 .category-iteams h3{
     position: absolute;
@@ -20,9 +21,12 @@
 .category-iteams{
     position: relative;
     margin-left: 40px;
+    cursor: pointer;
+    
 }
 .category-containers{
     display: flex;
+    grid-template-columns: repeat(4, 1fr);
     justify-content: space-around;
     align-items: center;
     margin-top: 50px;
@@ -30,11 +34,15 @@
     gap: 30px;
     margin-bottom: 30px;
 }
+.category-iteams:hover img{
+    transform: scale(1.05);
+    transition: 0.3s ease-in-out;
+}
 
 @media screen and(max-width:700px){
     .category-containers{
+        display: flex;
         flex-direction: column;
-        align-items: center;  
     }
 
 }
