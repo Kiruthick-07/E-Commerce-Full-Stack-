@@ -1,18 +1,15 @@
-import Hero from './Hero';
-import Header from './Header';
-import Category from './Category';
-import Products from './Products';
-import Review from './Review';
+import { Routes, Route } from 'react-router-dom';
+import Login from './Login';
+import Signup from './Signup';
+import Dashboard from './Dashboard';
 
 function App() {
   return (
-    <div>
-      <Header />
-      <Hero />
-      <Category />
-      <Products />
-      <Review />
-    </div>
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+    </Routes>
   );
 }
 
