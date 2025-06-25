@@ -5,17 +5,12 @@ import {Link} from 'react-router-dom';
 
 const Signup = () => {
  const[username,setuserName] = useState("");
- const[userpassword1,setuserPassword] = useState("");
- const[userpassword2,setuserRepassword]= useState("");
+ const[userpassword1,setuserEmail] = useState("");
+ const[userpassword2,setuserPassword]= useState("");
  const navigate = useNavigate();
- const passwordCheck=()=>{
-    if(userpassword1==userpassword2){
-        navigate('/Dashboard');
-    }
-    else{
-        alert("Reenter the password correctly");
-    }
- }
+ const handleSubmit = () => {
+   
+}
        const headertext={
           textAlign:'center',
           lineHeight:'0.6',
@@ -66,23 +61,23 @@ const Signup = () => {
      <center>
         <div style={login}>
           <div style={headertext}>
-            <h1>Hello There,Welcome!</h1>
+            <h1>Create an Account</h1>
             <p style={{color: '#888'}}> Please enter your credentials to signup</p>
           </div>
           <div style={emailcon}>
+            <h4 style={subheading}>Username</h4>
+            <input type='text' style={inputbox}  placeholder='Enter your username' onChange={(e)=> setuserName(e.target.value)}></input>
+          </div>
+          <div style={pswcon}>
             <h4 style={subheading}>Email Address</h4>
-            <input type='text' style={inputbox}  placeholder='Enter your email' onChange={(e)=> setuserName(e.target.value)}></input>
+            <input   type='email' placeholder='Enter the email'style={inputbox} onChange={(e)=>setuserEmail(e.target.value)} ></input>
           </div>
           <div style={pswcon}>
             <h4 style={subheading}>Password</h4>
-            <input placeholder='Enter your password' style={inputbox} onChange={(e)=>setuserPassword(e.target.value)} ></input>
-          </div>
-          <div style={pswcon}>
-            <h4 style={subheading}>Password</h4>
-            <input placeholder='Renter your password' style={inputbox} onChange={(e)=>setuserRepassword(e.target.value)} ></input>
+            <input  type='password' placeholder='Enter the password'style={inputbox} onChange={(e)=>setuserPassword(e.target.value)} ></input>
           </div>
           <div>
-            <button style={buttonstyle} onClick={passwordCheck}>Signup</button>
+            <button style={buttonstyle} onClick={handleSubmit}>Signup</button>
             <p style={{lineHeight:'0'}}>or</p>
           </div>
           <p style={{paddingBottom:'20px'}}>Had an account already ?<Link to="/login"  style={{textDecoration:'underline' , color:'blue',cursor:'pointer'}}>  Login</Link></p>

@@ -3,6 +3,8 @@ import Header from './Header';
 import Category from './Category';
 import Products from './Products';
 import Review from './Review';
+import Contact  from './Contact';
+import Footer from './Footer';
 
 function Dashboard() {
   return (
@@ -12,6 +14,8 @@ function Dashboard() {
       <Category />
       <Products />
       <Review />
+      <Contact />
+      <Footer />
     </div>
   );
 }
