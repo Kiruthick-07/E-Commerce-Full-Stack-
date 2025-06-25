@@ -4,19 +4,14 @@ import Review from './Review';
 import Contact from './Contact';
 import Footer from './Footer';
 
-// Create the context
 const CartContext = createContext();
 
-// Provider component
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
-  // Add product to cart
   const addToCart = (product) => {
     setCart((prevCart) => [...prevCart, product]);
   };
-
-  // Optionally, add more cart actions (remove, clear, etc.)
 
   return (
     <CartContext.Provider value={{ cart, addToCart }}>
@@ -25,10 +20,8 @@ export const CartProvider = ({ children }) => {
   );
 };
 
-// Custom hook to use cart context
 export const useCart = () => useContext(CartContext);
 
-// Cart component to display cart contents
 export const Cart = () => {
   const { cart } = useCart();
 
