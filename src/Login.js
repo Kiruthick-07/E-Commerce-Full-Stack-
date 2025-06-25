@@ -65,7 +65,6 @@ const Login = () => {
     const pswcon={
       lineHeight:'0.5',
     };
-    
   return (
     <center>
     <div style={login}>
@@ -96,4 +95,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login;
