@@ -41,7 +41,39 @@ app.post('/signup', async (req, res) => {
     }
 });
 
-
+app.post('/login', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        console.log('Login attempt for email:', email);
+        
+        // Find user by email
+        const user = await collection.findOne({ email: email });
+        console.log('User found:', user ? 'Yes' : 'No');
+        
+        if (!user) {
+            console.log('No user found with email:', email);
+            return res.status(401).json({ message: "Invalid credentials" });
+        }
+        
+        // Compare password with hashed password
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        console.log('Password valid:', isPasswordValid);
+        
+        if (isPasswordValid) {
+            console.log('Login successful for user:', user.name);
+            res.status(200).json({ 
+                message: "Login successful", 
+                user: { name: user.name, email: user.email }
+            });
+        } else {
+            console.log('Invalid password for user:', email);
+            res.status(401).json({ message: "Invalid credentials" });
+        }
+    } catch (err) {
+        console.error('Login error:', err);
+        res.status(500).json({ message: "Server error" });
+    }
+});
 
 const port =5000;
 app.listen(port,()=>{

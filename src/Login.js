@@ -4,21 +4,41 @@ import React from 'react'
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Login = () => {
     const [usermail , setuserMail] = useState("");
     const [userpassword , setuserPassword] = useState("");
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    const handleSubmit=()=>{
-        if(userpassword=='admin_003'){
-            navigate('/Dashboard');
-            alert("Welcome " + usermail);
+    const handleSubmit = async () => {
+        if (!usermail || !userpassword) {
+            alert("Please fill in all fields");
+            return;
         }
-        else{
-            alert("Invalid Credintials");
+
+        setLoading(true);
+        try {
+            const response = await axios.post('http://localhost:5000/login', {
+                email: usermail,
+                password: userpassword
+            });
+
+            alert("Welcome " + response.data.user.name);
+            navigate('/Dashboard');
+        } catch (error) {
+            console.error('Login error:', error);
+            if (error.response) {
+                alert(error.response.data.message || "Invalid credentials");
+            } else {
+                alert("Network error. Please try again.");
+            }
+        } finally {
+            setLoading(false);
         }
     }
+
     const headertext={
       textAlign:'center',
       lineHeight:'0.6',
@@ -58,6 +78,11 @@ const Login = () => {
       marginTop:'10px',
       cursor:'pointer',
     };
+    const disabledButtonStyle = {
+      ...buttonstyle,
+      backgroundColor: '#ccc',
+      cursor: 'not-allowed',
+    };
     const emailcon={
       lineHeight:'0.5',
       marginTop:'50px',
@@ -81,7 +106,13 @@ const Login = () => {
         <input type='password' placeholder='Enter your password' style={inputbox} onChange={(e)=>setuserPassword(e.target.value)} ></input>
       </div>
       <div>
-        <button style={buttonstyle} onClick={handleSubmit}>Login</button>
+        <button 
+          style={loading ? disabledButtonStyle : buttonstyle} 
+          onClick={handleSubmit}
+          disabled={loading}
+        >
+          {loading ? 'Logging in...' : 'Login'}
+        </button>
         <p style={{lineHeight:'0'}}>or</p>
       </div>
       <p style={{ paddingBottom: '20px' }}>
